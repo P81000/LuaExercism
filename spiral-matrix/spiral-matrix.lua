@@ -2,9 +2,6 @@ return function(size)
     local mat = {}
     for i = 1, size do
         mat[i] = {}
-        for j = 1, size do
-            mat[i][j] = nil
-        end
     end
 
     local x, y = 1, 1
@@ -16,10 +13,9 @@ return function(size)
 
         if next_x > size or next_y > size or next_x < 1 or next_y < 1 or mat[next_y][next_x] then
             dx, dy = -dy, dx
-            next_x, next_y = x + dx, y + dy
         end
 
-        x, y = next_x, next_y
+        x, y = x + dx, y + dy
     end
 
     return mat
