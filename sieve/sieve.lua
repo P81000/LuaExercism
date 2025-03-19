@@ -1,20 +1,23 @@
-
 return function(n)
     return coroutine.create(function()
+        if n < 2 then return end
         local isPrime = {}
-        for i = 2, n do
+        isPrime[2] = true
+        for i = 3, n, 2 do
             isPrime[i] = true
         end
 
-        for i = 2, math.floor(math.sqrt(n)) do
+        coroutine.yield(2)
+
+        for i = 3, math.floor(math.sqrt(n)), 2 do
             if isPrime[i] then
-                for j = i * i, n, i do
+                for j = i * i, n, i * 2 do
                     isPrime[j] = false
                 end
             end
         end
 
-        for i = 2, n do
+        for i = 3, n, 2 do
             if isPrime[i] then
                 coroutine.yield(i)
             end
