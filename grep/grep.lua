@@ -10,7 +10,6 @@ return function(options)
         ["-x"] = false  -- Match Entire Line
     }
 
-    -- Configurar flags
     for _, flag in ipairs(flags) do
         if active_flag[flag] ~= nil then active_flag[flag] = true end
     end
@@ -22,7 +21,6 @@ return function(options)
         local file = io.open(filename, "r")
         if file then
             local line_number = 0
-            local has_match = false
             for line in file:lines() do
                 line_number = line_number + 1
                 local line_to_match = line
@@ -41,7 +39,6 @@ return function(options)
                     matches = not matches
                 end
                 if matches then
-                    has_match = true
                     if active_flag["-l"] then
                         if not file_names_added[filename] then
                             table.insert(results, filename)
